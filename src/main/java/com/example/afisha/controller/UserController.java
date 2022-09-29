@@ -12,7 +12,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity getUsers(){
         try{
-            return ResponseEntity.ok("Сервер работает (100%)");
+            return ResponseEntity.ok("Сервер работает (точно работает)");
         }
         catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
