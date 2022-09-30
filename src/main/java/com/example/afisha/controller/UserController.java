@@ -14,23 +14,24 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping
-    public ResponseEntity registration (@RequestBody UserEntity user){
-        try{
-            userRepository.save(user);
-            return ResponseEntity.ok("Пользователь " + user.getUsername() + " добавлен (точно добавлен)");
-        }
-        catch (Exception e) {
+    public ResponseEntity registration(@RequestBody UserEntity user) {
+        try {
+            UserEntity u = userRepository.findByUsername(user.getUsername());
+            if (u == null) {
+                userRepository.save(user);
+                return ResponseEntity.ok("Пользователь " + user.getUsername() + " добавлен (точно добавлен)");
+            } else
+                return ResponseEntity.ok("Пользователь " + user.getUsername() + " уже существует");
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }
 
-
     @GetMapping
-    public ResponseEntity getUsers(){
-        try{
+    public ResponseEntity getUsers() {
+        try {
             return ResponseEntity.ok("Сервер работает (точно работает)");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
     }
