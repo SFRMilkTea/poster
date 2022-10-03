@@ -43,9 +43,9 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity deleteUser (@PathVariable Long id){
         try {
-            return ResponseEntity.ok(userService.getUser(id));
-        } catch (UserNotFoundException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.ok(userService.delete(id));
+//        } catch (UserNotFoundException e) {
+//            return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
