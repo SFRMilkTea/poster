@@ -16,7 +16,6 @@ public class User {
         return model;
     }
 
-
     public User() {
     }
 
