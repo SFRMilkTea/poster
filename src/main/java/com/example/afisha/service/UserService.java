@@ -3,6 +3,7 @@ package com.example.afisha.service;
 import com.example.afisha.entity.UserEntity;
 import com.example.afisha.exception.UserAlreadyExistException;
 import com.example.afisha.exception.UserNotFoundException;
+import com.example.afisha.model.User;
 import com.example.afisha.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,12 +23,12 @@ public class UserService {
             throw new UserAlreadyExistException("Пользователь " + user.getUsername() + " уже существует");
     }
 
-    public UserEntity getUser(Long id) throws UserNotFoundException {
+    public User getUser(Long id) throws UserNotFoundException {
         try {
             userRepository.findById(id).get();
         } catch (NoSuchElementException e) {
             throw new UserNotFoundException("Пользователь не найден");
         }
-        return userRepository.findById(id).get();
+        return User.toModel(userRepository.findById(id).get());
     }
 }
