@@ -7,13 +7,16 @@ import javax.persistence.Id;
 
 @Entity
 public class UserEntity {
+
+    /** Сущности - то что в бд **/
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
 
-    public UserEntity(){
+    public UserEntity() {
 
     }
 
@@ -41,3 +44,4 @@ public class UserEntity {
         this.password = password;
     }
 }
+

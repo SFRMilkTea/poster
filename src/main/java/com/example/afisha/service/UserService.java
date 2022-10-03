@@ -13,6 +13,8 @@ import java.util.NoSuchElementException;
 @Service
 public class UserService {
 
+    /** В сервисе описываются функции, которые потом вызываются через контроллер **/
+
     @Autowired
     private UserRepository userRepository;
 

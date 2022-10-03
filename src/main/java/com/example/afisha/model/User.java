@@ -2,6 +2,8 @@ package com.example.afisha.model;
 
 import com.example.afisha.entity.UserEntity;
 
+/** В модели происходит видоизменение сущности **/
+
 public class User {
     private Long id;
     private String username;
