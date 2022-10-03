@@ -2,7 +2,7 @@ package com.example.afisha.controller;
 
 import com.example.afisha.entity.UserEntity;
 import com.example.afisha.exception.UserAlreadyExistException;
-import com.example.afisha.repository.UserRepository;
+import com.example.afisha.exception.UserNotFoundException;
 import com.example.afisha.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +28,11 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity getUsers() {
+    public ResponseEntity getUser(@RequestParam Long id) {
         try {
-            return ResponseEntity.ok("Сервер работает (точно работает)");
+            return ResponseEntity.ok(userService.getUser(id));
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Произошла ошибка");
         }
